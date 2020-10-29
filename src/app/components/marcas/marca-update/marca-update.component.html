@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-card-title>
+        Atualizar Marca
+    </mat-card-title>
+
+    <ngx-spinner></ngx-spinner>
+    <form #f="ngForm" (ngSubmit)="OnSubmit(f)">
+
+
+        <div class="form-group" [class.has-error]="!nome.valid && nome.touched">
+            <label for="nomeMarca">Nome Marca</label>
+            <input placeholder="Nome da Marca" type="text" class="form-control" name="nome" id="nome"
+                [(ngModel)]="marca.nomeMarca" required #nome="ngModel" [class.is-invalid]="!nome.valid && nome.touched">
+
+            <div class="alert alert-danger" role="alert" *ngIf="!nome.valid && nome.touched">
+                Insira o nome da marca
+            </div>
+
+        </div>
+        <div class="btn-group mb-3">
+            <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Enviar</button>
+            <button type="button" class="btn btn-primary voltar" (click)="cancel()">Voltar</button>
+        </div>
+    </form>
+
+
+</mat-card>

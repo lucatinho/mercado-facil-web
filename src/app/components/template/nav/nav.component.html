@@ -1,0 +1,211 @@
+<mat-sidenav-container class="example-header">
+
+    <mat-sidenav class="sidenav_open" mode="side" opened fixedInViewport="true">
+
+
+        <!-- <span class="logo">
+            <a class="material-icons">
+                menu
+            </a>
+            <a routerLink="/">
+                <img  src="assets/img/logo.png" alt="logo">
+            </a>
+            
+        </span> -->
+
+        <mat-nav-list>
+            <br>
+
+            <a mat-list-item>
+                <!-- <i class="material-icons">
+                menu
+                </i> -->
+                
+                <i class="logo">
+                    <img  src="assets/img/logo.png" alt="logo">
+                </i> Mercado Facil
+                
+            </a>
+
+            <br>
+
+            <mat-divider class="divider"></mat-divider>
+
+            
+            <a mat-list-item routerLink="/">
+                <i class="material-icons">
+                home
+                </i> Inicio
+            </a>
+
+            <a mat-list-item routerLink="/produtos">
+                <i class="material-icons">
+                    add_shopping_cart
+                </i> Produtos
+            </a>
+
+            <!-- <a mat-list-item routerLink="/pedidos">
+                <i class="material-icons">
+                    storefront
+                </i> Pedidos
+            </a> -->
+
+
+
+
+            <mat-accordion>
+
+                <mat-expansion-panel class="mat-elevation-z0 text-accordion" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="title-accordion">
+                            <i class="material-icons">
+                                list_alt
+                            </i>Pedidos
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p routerLink="/pedidos">
+                        <button mat-button routerLink="/pedidos">Pedidos</button>
+                    </p>
+
+                    <p routerLink="pedido/separacao">
+                        <button mat-button routerLink="pedido/separacao">Pedidos Em Separação</button>
+                    </p>
+
+                    <p routerLink="pedido/enviado">
+                        <button mat-button routerLink="pedido/enviado">Pedidos Enviados</button>
+                    </p>
+
+                    <p routerLink="pedido/pronto">
+                        <button mat-button routerLink="pedido/pronto">Pedidos Retirada</button>
+                    </p>
+
+                    <p routerLink="pedido/finalizados">
+                        <button mat-button routerLink="pedido/finalizados">Pedidos Finalizados</button>
+                    </p>
+
+                </mat-expansion-panel>
+            </mat-accordion>
+
+            <!-- <mat-divider></mat-divider> -->
+
+
+
+            <!--            <a mat-list-item>
+
+                <button mat-button [matMenuTriggerFor]="menu">
+                    <i class="material-icons">
+                        expand_more
+                    </i> Pedidos
+                </button>
+
+            </a>  -->
+
+
+            <mat-accordion>
+
+                <mat-expansion-panel class="mat-elevation-z0 text-accordion" (opened)="panelCategoriaOpenState = true" (closed)="panelCategoriaOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="title-accordion">
+                            <i class="material-icons">
+                                category
+                            </i>Categoria
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p routerLink="/categoria">
+                        <button mat-button routerLink="/categoria">Categorias</button>
+                    </p>
+
+                    <p routerLink="/subCategoria">
+                        <button mat-button routerLink="/subCategoria">Sub-Categoria</button>
+                    </p>
+
+                </mat-expansion-panel>
+            </mat-accordion>
+
+
+            <a mat-list-item routerLink="/marcas">
+                <i class="material-icons">                 
+                    local_offer
+                </i> Marcas
+            </a>
+
+            <!--             <a mat-list-item routerLink="/categoria">
+                <i class="material-icons">
+                    category
+                </i> Categoria
+            </a>
+
+            <a mat-list-item routerLink="/subCategoria">
+                <i class="material-icons">
+                    subject
+                </i> Sub-Categoria
+            </a> -->
+
+            <a mat-list-item routerLink="/relatorios">
+                <i class="material-icons">
+                    monetization_on
+                </i> Relatorios
+            </a>
+
+            <!-- <a mat-list-item routerLink="/mercadoInfo">
+                <i class="material-icons">
+                    storefront
+                </i> Mercado Info
+            </a> -->
+        </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-menu class="menu" #menu="matMenu" xPosition="after">
+        <button mat-menu-item>
+            <a mat-list-item routerLink="/pedidos">
+                <i class="material-icons">
+                    list_alt
+                    <!-- shopping_cart -->
+                </i> Pedidos
+            </a>
+        </button>
+        <button mat-menu-item>
+            <a mat-list-item routerLink="pedido/separacao">
+                <i class="material-icons">
+                    shopping_basket
+                </i> Pedidos Em Separação
+            </a>
+        </button>
+        <button mat-menu-item>
+            <a mat-list-item routerLink="pedido/pronto">
+                <i class="material-icons">
+                    assignment_returned
+                </i> Pedidos Retirada
+            </a>
+        </button>
+        <button mat-menu-item>
+            <a mat-list-item routerLink="pedido/enviado">
+                <i class="material-icons">
+                    local_shipping
+                </i> Pedidos Enviados
+            </a>
+        </button>
+        <button mat-menu-item>
+            <a mat-list-item routerLink="pedido/finalizados">
+                <i class="material-icons">
+                    assignment_turned_in
+                </i> Pedidos Finalizados
+            </a>
+        </button>
+    </mat-menu>
+
+    <mat-sidenav-content class="content">
+
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+
+
+</mat-sidenav-container>

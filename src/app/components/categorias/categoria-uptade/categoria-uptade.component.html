@@ -1,0 +1,47 @@
+<mat-card>
+    <mat-card-title>
+        Alterar Categoria
+    </mat-card-title>
+    <ngx-spinner></ngx-spinner>
+    <form #f="ngForm" (ngSubmit)="OnSumbit(f)">
+
+        <div class="form-group" [class.has-error]="!nome.valid && nome.touched">
+            <label for="nomeMarca">Nome de Categoria</label>
+
+            <input placeholder="Nome de Categoria" type="text" class="form-control" name="nome" id="nome" required #nome="ngModel" [class.is-invalid]="!nome.valid && nome.touched" [(ngModel)]="Categoria.nomeCategoria" name="nomeCategoria">
+            <div class="alert alert-danger" role="alert" *ngIf="!nome.valid && nome.touched">
+                Insira o nome da categoria
+            </div>
+
+        </div>
+
+        <div class="btn-group mb-3">
+            <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Enviar</button>
+            <button type="button" class="btn btn-primary voltar" (click)="cancel()">Voltar</button>
+        </div>
+
+
+    </form>
+
+    <section class="section">
+        <a *ngFor="let item of Categoria.subCategoria">
+            <!-- <a *ngIf="item.completed == true"> -->
+                <mat-checkbox class="content" [disabled]="true" [(ngModel)]="item.completed"
+                    (ngModelChange)="postCheckbox(item.completed, item);">
+                    {{ item.nomeSubCategoria }}
+                </mat-checkbox>
+            <!-- </a> -->
+        </a>
+    </section>
+
+    <section class="section">
+        <a *ngFor="let item of allSubcategoria">
+            <!-- <a *ngIf="item.completed == false"> -->
+                <mat-checkbox class="content" [(ngModel)]="item.completed"
+                    (ngModelChange)="postCheckbox2(item.completed, item);">
+                    {{ item.nomeSubCategoria }}
+                </mat-checkbox>
+            <!-- </a> -->
+        </a>
+    </section>
+</mat-card>

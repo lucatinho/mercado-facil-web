@@ -1,0 +1,180 @@
+<mat-card>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md">
+                <h2>Informações Cliente</h2>
+                <form>
+                    <div class="form-group">
+                        <label>Id Pedido: </label>
+                        <input placeholder="Id" class="form-control" [(ngModel)]="pedido.idPedido" name="id" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Nome Cliente: </label>
+                        <input placeholder="Cliente" class="form-control" [(ngModel)]="pedido.cliente.nome" name="cliente" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Forma de Pagamento: </label>
+                        <input placeholder="Forma de Pagamento" class="form-control" [(ngModel)]="pedido.formaPagamento" name="formaPagamento" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Forma de Envio: </label>
+                        <input placeholder="Forma de Envio" class="form-control" [(ngModel)]="pedido.formaEnvio" name="formaEnvio" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Data do Pedido: </label>
+                        <input class="form-control" placeholder="Data do Pedido" datetime="dd-MM-yyyy HH:mm:ss" value="{{ pedido.dataPedido | date:'dd/MM hh:mm'}}" name="dataPedido" disabled>
+                    </div>
+                </form>
+
+                <div *ngIf="pedido.endereco == 0">
+                    <h2>Retirada no Local </h2>
+                </div>
+
+                <div *ngIf="pedido.endereco != 0">
+                    <h2>Endereço de Entrega</h2>
+
+                    <ul class="list-group">
+                        <li class="list-group-item">Rua: {{enderecoFormatado.rua}} </li>
+                        <li class="list-group-item">N° : {{enderecoFormatado.numero}} </li>
+                        <li class="list-group-item">Bairo: {{enderecoFormatado.bairro}} </li>
+                        <li class="list-group-item">Cidade: {{enderecoFormatado.cidade}}</li>
+                        <li class="list-group-item">Cep: {{enderecoFormatado.cep}}</li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md">
+                <h2>PRODUTOS</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+
+                            <th>Nome do produto</th>
+                            <th>Marca</th>
+                            <th>Quantidade</th>
+                            <th>Preço</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let item of pedido.pedidoProdutos">
+                            <th>{{ item.nomeProduto }}</th>
+                            <td>{{ item.marcaProduto }}</td>
+                            <td>{{ item.qtdProduto }}</td>
+                            <td>{{ item.valorUni | currency: 'BRL' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>Total: {{totalpedido | currency:'BRL' }}</h2>
+            </div>
+        </div>
+
+        <button *ngIf="pedido.endereco == 0" mat-raised-button (click)="separador()" color="primary">
+            Pedido Pronto!
+        </button>
+
+        <button *ngIf="pedido.endereco != 0" mat-raised-button (click)="separador()" color="primary">
+            Enviar Pedido
+        </button>
+
+        <button mat-raised-button (click)="cancel()">
+            Voltar
+        </button>
+
+        <!-- <button mat-raised-button>
+            Cancelar
+        </button> -->
+
+    </div>
+</mat-card>
+
+
+
+<!--
+<mat-card>
+    <mat-card-title>
+        Info Pedido
+    </mat-card-title>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+
+                <form>
+
+                    <mat-form-field>
+                        <input matInput placeholder="Id" [(ngModel)]="pedido.idPedido" name="id" disabled>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput placeholder="Cliente" [(ngModel)]="pedido.cliente.nome" name="cliente" disabled>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput placeholder="Forma de Pagamento" [(ngModel)]="pedido.formaPagamento"
+                            name="formaPagamento" disabled>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput placeholder="Forma de Envio" [(ngModel)]="pedido.formaEnvio" name="formaEnvio"
+                            disabled>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput placeholder="Data do Pedido" [(ngModel)]="pedido.dataPedido" name="dataPedido"
+                            disabled>
+                    </mat-form-field>
+
+                </form>
+
+            </div>
+            <div class="col-md">
+
+                <mat-card class="listaProd">
+
+                    <mat-card-title>
+                        Endereço
+                    </mat-card-title>
+
+                    <mat-list class="lista">
+                        <mat-list-item>
+                            <h3 matLine> Rua {{enderecoFormatado.rua}} </h3>
+                            <p matLine> Marca: {{enderecoFormatado.numero}} </p>
+                            <p matLine class="demo-2">Bairo: {{enderecoFormatado.bairro}} </p>
+                        </mat-list-item>
+                    </mat-list>
+
+                    <mat-card-title>
+                        Produtos
+                    </mat-card-title>
+
+                    <mat-list class="lista">
+                        <mat-list-item *ngFor="let item of pedido.pedidoProdutos">
+                            <h3 matLine> Nome produto: {{item.nomeProduto}} </h3>
+                            <p matLine> Marca: {{item.marcaProduto}} </p>
+                            <p matLine class="demo-2"> Quantidade: {{item.qtdProduto}} </p>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card>
+
+            </div>
+
+            <button mat-raised-button (click)="updatePedido()" color="primary">
+                Aceitar Pedido
+            </button>
+            
+            <button mat-raised-button (click)="cancel()">
+                Cancelar
+            </button>
+            
+            <button mat-raised-button>
+                Voltar
+            </button>
+
+        </div>
+    </div>
+</mat-card>
+-->

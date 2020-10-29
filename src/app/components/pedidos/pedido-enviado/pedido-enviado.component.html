@@ -1,0 +1,51 @@
+<div class="mat-elevation-z8">
+    <div class="mat-elevation-z8">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nº</th>
+                <th>Nome</th>
+                <th>Entrega</th>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Acão</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of pedidosFormatado">
+            
+                <th>{{ item.idPedido }}</th>
+                <td>{{ item.cliente.nome }}</td>
+                <td>{{ item.formaEnvio }}</td>
+                <td>{{ item.dataPedido | date:'dd/MM hh:mm'}}</td>
+                <td>{{ item.statusPedido.nomeStatusPedido }}</td>
+
+                <td>
+                  <a (click)="buscarPedidoUnico(item.idPedido)" routerLink="/enviado/info/" class="info">
+                    <i class="material-icons">
+                      edit
+                    </i>
+                  </a>
+                  
+                  <a routerLink="" class="print">
+                    <i routerLink="" class="material-icons">
+                      local_printshop
+                    </i>
+                  </a>
+
+                  
+                </td>
+                
+              </tr>
+             
+            </tbody>
+          </table>
+    
+               
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+    </div>
+
+</div>

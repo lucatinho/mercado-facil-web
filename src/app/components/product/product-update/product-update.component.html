@@ -1,0 +1,198 @@
+<mat-card>
+    <mat-card-title>
+        Atualizar Produto
+    </mat-card-title>
+    <ngx-spinner></ngx-spinner>
+    <form #f="ngForm" (ngSubmit)="OnSubmit(f)">
+
+
+        <div class="form-group" [class.has-error]="!nome.valid && nome.touched">
+            <label for="nomeProduto">Nome Produto</label>
+            <input placeholder="Nome do Produto" type="text" class="form-control" name="nome" id="nome" [(ngModel)]="product.nomeProduto" required #nome="ngModel" [class.is-invalid]="!nome.valid && nome.touched">
+
+            <div class="alert alert-danger" role="alert" *ngIf="!nome.valid && nome.touched">
+                Insira o nome do produto
+            </div>
+
+        </div>
+
+
+        <div class="form-group" [class.has-error]="!descricao.valid && descricao.touched">
+            <label for="descricao">Descrição</label>
+            <input placeholder="Descrição" type="text" class="form-control" name="descricao" id="descricao" [(ngModel)]="product.descricao" required #descricao="ngModel" [class.is-invalid]="!descricao.valid && descricao.touched">
+
+            <div class="alert alert-danger" role="alert" *ngIf="!descricao.valid && descricao.touched">
+                Insira a descrição do produto
+            </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="!quantidade.valid && quantidade.touched">
+            <label for="quantidade">Quantidade</label>
+            <input placeholder="Quantidade" type="text" class="form-control" name="quantidade" id="quantidade" pattern="\d+(\.\d{2})?" [(ngModel)]="product.quantidade" required #quantidade="ngModel" [class.is-invalid]="!quantidade.valid && quantidade.touched">
+
+            <div value=1 class="alert alert-danger" role="alert" *ngIf="!quantidade.valid && quantidade.touched">
+                Insira a quantidade disponivel do produto ou troque a "," por "."
+            </div>
+
+        </div>
+
+
+        <div class="form-group" [class.has-error]="!preco.valid && preco.touched">
+            <label for="preco">Preço (R$)</label>
+            <input placeholder="Ex: 100.00" class="form-control" name="preco" id="preco" [(ngModel)]="product.preco" type="text" pattern="\d+(\.\d{2})?" required #preco="ngModel" [class.is-invalid]="!preco.valid && preco.touched">
+
+            <div class="alert alert-danger" role="alert" *ngIf="!preco.valid && preco.touched">
+                Insira o preço do produto ou troque a "," por "."
+            </div>
+        </div>
+
+
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Marca</mat-label>
+            <mat-select (selectionChange)="matselectMarca($event.value)" required>
+                <mat-option *ngFor="let marca of marca" [value]="marca.idMarca">
+                    {{ marca.nomeMarca }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <p>Marca Atual: {{ product.marca.nomeMarca }}</p>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Categoria</mat-label>
+            <mat-select (selectionChange)="matselectCategoria($event.value)" required>
+                <mat-option *ngFor="let categoria of categorias" [value]="categoria.idCategoria">
+                    {{ categoria.nomeCategoria }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <p>Categoria Atual: {{ product.categoria.nomeCategoria }}</p>
+
+        <mat-form-field appearance="fill">
+            <mat-label>SubCategoria</mat-label>
+            <mat-select (selectionChange)="matselectSubcategoria($event.value)" required>
+                <mat-option *ngFor="let subcategoria of subcategoria" [value]="subcategoria.idSubCategoria">
+                    {{ subcategoria.nomeSubCategoria }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <p>SubCategoria Atual: {{ product.subCategoria.nomeSubCategoria }}</p>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Situação Atual: </mat-label>
+            <mat-select (selectionChange)="matselectAtivo($event.value)" required>
+                <mat-option [value]="true">
+                    Ativo
+                </mat-option>
+                <mat-option [value]="false">
+                    Desativar
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <p *ngIf="product.ativo == true">Situação Atual: Produto Ativo</p> 
+        <p *ngIf="product.ativo != true">Situação Atual: Produto Desativado</p> 
+
+        <!-- <mat-form-field appearance="fill">
+            <mat-label>Situação Atual: </mat-label>
+            <mat-slide-toggle [(ngModel)]="product.ativo">{{ product.ativo }}</mat-slide-toggle>
+        </mat-form-field> -->
+
+        
+
+        <!--         <div class="form-group">
+            <label for="marcaFormControlSelect">Marca</label>
+            <select name="marca" (selectionChange)="matselectMarca($event.value)" class="form-control" id="marcaFormControlSelect1">
+                <option *ngFor="let item of marca" [value]="item.idMarca">{{ item.nomeMarca }}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="categoriaFormControlSelect">Categoria</label>
+            <select name="Categoria" (selectionChange)="matselectCategoria($event.value)" class="form-control" id="categoriaFormControlSelect1">
+                <option *ngFor="let categoria of categorias" [value]="categoria.idCategoria">
+                    {{ categoria.nomeCategoria }}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="subCategoriaFormControlSelect">SubCategoria</label>
+            <select name="SubCategoria" class="form-control" (selectionChange)="matselectSubcategoria($event.value)" id="subCategoriaFormControlSelect1">
+                <option *ngFor="let subcategoria of subcategoria" [value]="subcategoria.idSubCategoria">
+                    {{ subcategoria.nomeSubCategoria }}</option>
+            </select>
+        </div>
+ -->
+        <input #imageInput type="file" (change)="imageInputChange(imageInput)" accept="image/*" />
+
+        <!--
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="ativoCheck1">
+            <label class="form-check-label" for="ativoCheck1">Produto Ativo</label>
+        </div>
+    -->
+
+        <div class="btn-group mb-3 gpbtn">
+            <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Enviar</button>
+            <button type="button" class="btn btn-primary voltar" (click)="cancel()">Voltar</button>
+        </div>
+
+
+
+        <!--
+        <mat-form-field>
+            <input matInput placeholder="Nome" [(ngModel)]="product.nomeProduto" name="name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Descricao" [(ngModel)]="product.descricao" name="descricao">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Preço (R$)" [(ngModel)]="product.preco" name="price">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Quantidade" [(ngModel)]="product.quantidade" name="quantidade">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Marca</mat-label>
+            <mat-select (selectionChange)="matselectMarca($event.value)">
+                <mat-option *ngFor="let marca of marca"  [value]="marca.idMarca">
+                    {{ marca.nomeMarca }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Categoria</mat-label>
+            <mat-select (selectionChange)="matselectCategoria($event.value)">
+                <mat-option *ngFor="let categoria of categorias" [value]="categoria.idCategoria">
+                    {{ categoria.nomeCategoria }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>SubCategoria</mat-label>
+            <mat-select (selectionChange)="matselectSubcategoria($event.value)">
+                <mat-option *ngFor="let categoria of categorias" [value]="categoria.subCategoria.idSubCategoria">
+                    {{ categoria.subCategoria.nomeSubCategoria }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        
+        <mat-radio-group (selectionChange)="matradiobutton($event.value)" aria-label="Select an option">
+            <mat-radio-button value="true">Ativo</mat-radio-button>
+            <mat-radio-button value="false">Desativado</mat-radio-button>
+        </mat-radio-group>-->
+
+
+    </form>
+
+</mat-card>

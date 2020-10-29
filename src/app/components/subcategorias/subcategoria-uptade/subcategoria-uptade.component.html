@@ -1,0 +1,31 @@
+<mat-card>
+    <mat-card-title>
+        Atualizar SubCategoria
+    </mat-card-title>
+    <ngx-spinner></ngx-spinner>
+    <form #f="ngForm" (ngSubmit)="OnSumbit(f)">
+
+        <div class="form-group" [class.has-error]="!nome.valid && nome.touched">
+            <label for="nomeMarca">Nome da SubCategoria</label>
+
+            <input placeholder="Nome de SubCategoria" type="text" class="form-control" name="nome" id="nome" required
+                #nome="ngModel" [class.is-invalid]="!nome.valid && nome.touched"
+                [(ngModel)]="SubCategoria.nomeSubCategoria" name="subCategoria">
+            <div class="alert alert-danger" role="alert" *ngIf="!nome.valid && nome.touched">
+                Insira o nome da Subcategoria
+            </div>
+
+        </div>
+
+        <input #imageInput type="file" (change)="imageInputChange(imageInput)" accept="image/*" />
+
+        <br>
+        <div class="btn-group mb-3">
+            <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Enviar</button>
+            <button type="button" class="btn btn-primary voltar" (click)="cancel()">Voltar</button>
+        </div>
+
+
+    </form>
+
+</mat-card>

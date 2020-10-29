@@ -1,0 +1,43 @@
+<a *ngIf="test == false">
+
+    <div class="login">
+        <div class="formLogin">
+            <form id="accesspanel" action="">
+
+                <div class="text-center mb-4">
+                    <img class="logoLogin mb-4" src="assets/img/logo.png">
+                    <h1>Mercado Fácil</h1>
+
+                </div>
+                <ngx-spinner></ngx-spinner>
+                <div class="form-label-group">
+                    <label for="inputEmail">Usuario</label>
+                    <input class="form-control" type="text" name="username" [(ngModel)]="username" id="email" placeholder="Usuario" required>
+
+                </div>
+                <div class="form-label-group">
+                    <label for="inputPassword">Senha</label>
+                    <input class="form-control" type="password" name="password" [(ngModel)]="password" id="password" placeholder="Senha" required>
+
+                </div>
+
+                <br>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login" (click)="doLogin()">Logar</button>
+
+            </form>
+
+        </div>
+    </div>
+
+</a>
+<a *ngIf="test == true">
+
+    <app-header></app-header>
+    <app-nav></app-nav>
+    <!--     <a class="content">
+        <router-outlet></router-outlet>
+    </a> -->
+
+    <app-footer></app-footer>
+</a>

@@ -1,0 +1,14 @@
+form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+}
+
+button {
+    margin-right: 10px;
+}
+
+.fechar {
+    color: #000000;
+    background-color: #ca1d1d;
+}

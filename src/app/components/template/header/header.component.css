@@ -1,0 +1,114 @@
+.header {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background-color: #162163;
+}
+
+.example-container {
+    position: absolute;
+    top: 60px;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+}
+
+.header i {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff
+}
+
+.header a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff
+}
+
+.header .logo {
+    width: 72px;
+    height: 72px;
+    padding: 10px;
+    max-width: 512px;
+}
+
+.header .title-group {
+    padding-left: 10px;
+}
+
+.header .perfil {
+    width: 64px;
+    height: 64px;
+    align-items: flex-end;
+    padding: 10px;
+}
+
+.header .title-group {
+    padding-right: 5px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.header .perfil-text {
+    padding-right: 15px;
+}
+
+
+/* .header {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background-color: #3F51B5;
+}
+
+.onde {
+    margin-left: 10px;
+    align-items: center;
+    text-decoration: none;
+    color: #000000
+}
+
+.texto-icone .a {
+    margin-left: 10px;
+    align-items: center;
+    text-decoration: none;
+    color: #000000
+}
+
+.logo {
+    max-width: 512px;
+}
+
+.navbar .perfil {
+    width: 64px;
+    height: 64px;
+    align-items: flex-end;
+    padding: 10px;
+}
+
+.header .info {
+    display: flex;
+    align-items: flex-end;
+    text-decoration: none;
+    color: #000000
+}
+
+.header .title-group {
+    padding-right: 5px;
+}
+
+.header .perfil-text {
+    padding-right: 15px;
+}
+
+.dropdown.no-arrow .dropdown-toggle::after {
+    display: none;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+} */

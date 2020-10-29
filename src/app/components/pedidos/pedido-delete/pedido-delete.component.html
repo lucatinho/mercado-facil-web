@@ -1,0 +1,197 @@
+<mat-card>
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h2>Informações Cliente</h2>
+                <ngx-spinner></ngx-spinner>
+                <form>
+                    <div class="form-group">
+                        <label>Id Pedido: </label>
+                        <input placeholder="Id" [(ngModel)]="pedido.idPedido" name="id" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Nome Cliente: </label>
+                        <input placeholder="Cliente" [(ngModel)]="pedido.cliente.nome" name="cliente" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Forma de Pagamento: </label>
+                        <input placeholder="Forma de Pagamento" [(ngModel)]="pedido.formaPagamento" name="formaPagamento" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Forma de Envio: </label>
+                        <input placeholder="Forma de Envio" [(ngModel)]="pedido.formaEnvio" name="formaEnvio" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Data do Pedido: </label>
+                        <input class="form-control" placeholder="Data do Pedido" datetime="dd-MM-yyyy HH:mm:ss" value="{{ pedido.dataPedido | date:'dd/MM hh:mm'}}" name="dataPedido" disabled>
+                    </div>
+                </form>
+
+                <h2>Endereço de Entrega</h2>
+
+                <ul class="list-group">
+                    <li class="list-group-item">Rua: {{enderecoFormatado.rua}} </li>
+                    <li class="list-group-item">N° : {{enderecoFormatado.numero}} </li>
+                    <li class="list-group-item">Bairo: {{enderecoFormatado.bairro}} </li>
+                    <li class="list-group-item">Cidade: {{enderecoFormatado.cidade}}</li>
+                    <li class="list-group-item">Cep: {{enderecoFormatado.cep}}</li>
+                </ul>
+
+            </div>
+            <div class="col-md">
+                <h2>PRODUTOS</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+
+                            <th>Nome do produto</th>
+                            <th>Marca</th>
+                            <th>Quantidade</th>
+                            <th>Preço</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let item of pedido.pedidoProdutos">
+                            <th>{{ item.nomeProduto }}</th>
+                            <td>{{ item.marcaProduto }}</td>
+                            <td>{{ item.qtdProduto }}</td>
+                            <td>{{ item.valorUni | currency: 'BRL' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>Total: </h2>
+            </div>
+        </div>
+
+        <!-- <button mat-raised-button (click)="recusarPedido()" class="btn btn-danger">
+            Recusar Pedido
+        </button> -->
+
+        <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Cancelar Pedido</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h3>Deseja realmente cancelar esse pedido ?</h3>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Voltar</button>
+              <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Cancelar Pedido</button>
+            </div>
+          </ng-template>
+    
+
+        <button mat-raised-button (click)="open(content)" class="btn btn-danger">
+            Teste de Pedido
+        </button>
+
+    <!--     <pre>{{ closeResult }}</pre> -->
+
+        <button mat-raised-button (click)="cancel()">
+            Voltar
+        </button>
+
+    </div>
+
+
+
+</mat-card>
+
+
+
+
+<!-- <mat-card>
+
+    <mat-card-title>
+        Recusar Pedido
+    </mat-card-title>
+
+    <form>
+
+        <mat-form-field>
+            <input matInput placeholder="Id" [(ngModel)]="pedido.idPedido" name="id" disabled>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Cliente" [(ngModel)]="pedido.cliente.nome" name="cliente" disabled>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Endereco" [(ngModel)]="pedido.cliente.endereco" name="endereco" disabled>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="CEP" [(ngModel)]="pedido.cliente.cep" name="cep" disabled>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Forma de Pagamento" [(ngModel)]="pedido.formaPagamento" name="formaPagamento" disabled>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Forma de Envio" [(ngModel)]="pedido.formaEnvio" name="formaEnvio" disabled>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Data do Pedido" [(ngModel)]="pedido.dataPedido" name="dataPedido" disabled>
+        </mat-form-field>
+
+        
+        <mat-form-field>
+            <input matInput placeholder="Produto" [(ngModel)]="pedido.pedidoProdutos.nomeProduto" name="nomeProduto" disabled>
+            <input matInput placeholder="Produto" [(ngModel)]="pedido.pedidoProdutos.nomeProduto" name="nomeProduto" disabled>
+        </mat-form-field>
+       
+    </form>
+
+    <mat-card class="listaProd">
+        <mat-card-title>
+            Produtos
+        </mat-card-title>
+
+        <mat-list class="lista">
+            <mat-list-item *ngFor="let item of pedido.pedidoProdutos">
+                <h3 matLine> Nome produto: {{item.nomeProduto}} </h3>
+                <p matLine> Marca: {{item.marcaProduto}} </p>
+                <p matLine class="demo-2"> Quantidade: {{item.qtdProduto}} </p>
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
+
+     <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              This is the expansion title
+            </mat-panel-title>
+            <mat-panel-description>
+              This is a summary of the content
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>This is the primary content of the panel.</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Self aware panel
+            </mat-panel-title>
+            <mat-panel-description>
+              Currently I am {{panelOpenState ? 'open' : 'closed'}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>I'm visible because I am open</p>
+        </mat-expansion-panel>
+      </mat-accordion>  
+
+
+</mat-card>
+
+-->

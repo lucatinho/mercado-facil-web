@@ -1,0 +1,22 @@
+form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+}
+
+button {
+    margin-right: 10px;
+}
+
+.mat-radio-group .mat-radio-button {
+    margin-bottom: 10px;
+    margin-left: 16px;
+}
+
+.voltar {
+    margin-left: 10px;
+}
+
+.gpbtn {
+    margin-top: 10px;
+}

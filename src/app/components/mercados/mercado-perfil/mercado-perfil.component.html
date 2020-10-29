@@ -1,0 +1,130 @@
+<mat-card>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!--Coluna 1-->
+            <div class="col-md">
+                <h2>Informações do Mercado</h2>
+                <form class="form">
+                    <div class="form-group">
+
+                        <label for="nomeMercado">Nome do Mercado: </label>
+                        <input placeholder="Nome de Mercado" type="text" class="form-control" [(ngModel)]="infoMercado.nomeMercado" name="nomeMercado" disabled>
+
+                    </div>
+                    <div class="form-group">
+                        <label>Horario de Funcionamento: </label>
+                        <input placeholder="Horario" type="text" class="form-control" name="horario" [(ngModel)]="infoMercado.horario" name="Horario" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Slogan: </label>
+                        <input placeholder="Slogan" type="text" class="form-control" [(ngModel)]="infoMercado.observacao" name="observacao" disabled>
+
+                        <!-- <textarea placeholder="Slogan" type="text" [(ngModel)]="infoMercado.observacao" name="observacao" disabled  rows="3"></textarea> -->
+                    </div>
+
+                    <div class="form-group">
+                        <label>Valor do Frete: </label>
+                        <input placeholder="Frete R$" type="number" class="form-control" name="freteMercado" [(ngModel)]="infoMercado.freteMercado" disabled>
+                    </div>
+
+                    <div *ngIf="infoMercado.situacao == true" class="form-group">
+                        <label>Situação do Mercado </label>
+                        <input placeholder="Situação" type="text" class="form-control" name="situacaoMercado" value="Aberto" disabled>
+                    </div>
+
+                    <div *ngIf="infoMercado.situacao == false" class="form-group">
+                        <label>Situação do Mercado </label>
+                        <input placeholder="Situação" type="text" class="form-control" name="situacaoMercado" value="Fechado" disabled>
+                    </div>
+
+                </form>
+            </div>
+            <!--Coluna 2-->
+            <div class="col-md">
+                <h2>Imagem do Mercado</h2>
+                <br>
+                <div class="text-center">
+                    <img src="{{infoMercado.picture}}" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <h6>Imagem do Mercado</h6>
+                    <!-- <input type="file" class="text-center center-block file-upload"> -->
+                </div>
+            </div>
+
+        </div>
+        <br>
+
+        <div *ngIf="infoMercado.situacao == true" class="btn-group mb-3">
+
+            <button type="button" class="btn btn-primary" (click)="mercadoAlterar()">Alterar Informações</button>
+            <button type="button" class="btn btn-danger" (click)="mercadoFechar()">Fechar Mercado</button>
+            <button type="button" class="btn btn-primary" (click)="voltar()">Sair</button>
+
+        </div>
+
+        <div *ngIf="infoMercado.situacao == false" class="btn-group mb-3">
+
+            <button type="button" class="btn btn-primary" (click)="mercadoAlterar()">Alterar Informações</button>
+            <button type="button" class="btn btn-primary" (click)="mercadoFechar()">Abrir Mercado</button>
+            <button type="button" class="btn btn-primary" (click)="voltar()">Sair</button>
+
+        </div>
+
+
+    </div>
+
+
+
+
+    <!-- <mat-card-title>
+        Informações do Mercado
+    </mat-card-title>
+    <form #f="ngForm" (ngSubmit)="OnSumbit(f)">
+
+        <div class="form-group" [class.has-error]="!nome.valid && nome.touched">
+            <label for="nomeMercado">Nome do Mercado</label>
+
+            <input placeholder="Nome de Mercado" type="text" class="form-control" name="nome" id="nome" required #nome="ngModel" [class.is-invalid]="!nome.valid && nome.touched" [(ngModel)]="infoMercado.nomeMercado" name="nomeMercado" disabled>
+            <div class="alert alert-danger" role="alert" *ngIf="!nome.valid && nome.touched">
+                Preencha o Campo
+            </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="!horario.valid && horario.touched">
+            <label for="nomeMarca">Horario de Atendimento</label>
+
+            <input placeholder="Horario" type="text" class="form-control" name="horario" id="horario" required #horario="ngModel" [class.is-invalid]="!horario.valid && horario.touched" [(ngModel)]="infoMercado.horario" name="Horario" disabled>
+            <div class="alert alert-danger" role="alert" *ngIf="!horario.valid && horario.touched">
+                Preencha este Campo
+            </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="!observacao.valid && observacao.touched">
+            <label for="observacao">Slogan do Mercado</label>
+
+            <input placeholder="Slogan" type="text" class="form-control" name="observacao" id="observacao" required #observacao="ngModel" [class.is-invalid]="!observacao.valid && observacao.touched" [(ngModel)]="infoMercado.observacao" name="observacao" disabled>
+            <div class="alert alert-danger" role="alert" *ngIf="!observacao.valid && observacao.touched">
+                Preencha este Campo
+            </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="!freteMercado.valid && freteMercado.touched">
+            <label for="freteMercado">Valor da Entrega</label>
+
+            <input placeholder="Frete R$" type="number" class="form-control" name="freteMercado" id="freteMercado" required #freteMercado="ngModel" [class.is-invalid]="!freteMercado.valid && freteMercado.touched" [(ngModel)]="infoMercado.freteMercado" name="freteMercado"
+                disabled>
+            <div class="alert alert-danger" role="alert" *ngIf="!freteMercado.valid && freteMercado.touched">
+                Preencha este Campo
+            </div>
+
+
+        </div>
+
+        <div class="btn-group mb-3">
+            <button type="button" class="btn btn-primary" (click)="mercadoAlterar()">Alterar</button>
+            <button type="button" class="btn btn-danger" (click)="mercadoFechar()">Fechar</button>
+            <button type="button" class="btn btn-primary voltar" (click)="voltar()">Sair</button>
+        </div>
+    </form>
+ -->
+</mat-card>
