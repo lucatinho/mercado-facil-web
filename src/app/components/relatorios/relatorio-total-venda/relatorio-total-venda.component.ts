@@ -1,6 +1,15 @@
+import { Pedido } from './../../pedidos/pedidos.model';
 import { HeaderService } from './../../template/header/header.service';
 import { Component, OnInit } from '@angular/core';
 import { PedidosService } from '../../pedidos/pedidos.service';
+
+import {AfterViewInit, ViewChild} from '@angular/core';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+
+import {MatPaginator} from '@angular/material/paginator';
+
+
 
 @Component({
   selector: 'app-relatorio-total-venda',
@@ -10,7 +19,13 @@ import { PedidosService } from '../../pedidos/pedidos.service';
 export class RelatorioTotalVendaComponent implements OnInit {
 
   pedidos: any = []
+  /* Pedidos: Pedido[] */
   pedidosFormatado:any=[];
+
+  displayedColumns: string[] = ['idPedido', 'cliente', 'dataPedido', 'statusPedidos'];
+  dataSource = new MatTableDataSource <Pedido>(this.pedidosFormatado);
+  
+
   constructor(private pedidoService: PedidosService,
               private headerService: HeaderService) {
 
@@ -25,6 +40,8 @@ export class RelatorioTotalVendaComponent implements OnInit {
     this.bancoPedidos();
   }
 
+ 
+
   bancoPedidos(){
 
     this.pedidoService.read().subscribe(pedidos => {
@@ -38,8 +55,16 @@ export class RelatorioTotalVendaComponent implements OnInit {
         }
         
       }
-      // console.log("funcionou " + this.pedidosFormatado);
+      /* console.log("funcionou " + this.pedidosFormatado); */
     })
 
   }
+
+  
+  @ViewChild(MatSort) sort: MatSort;
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
+
 }

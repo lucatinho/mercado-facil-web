@@ -2,7 +2,7 @@
 
 <div class="mat-elevation-z8">
 
-  <table class="table table-striped">
+  <!-- <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">Nº</th>
@@ -20,6 +20,36 @@
         <td>@mdo</td>
       </tr>
     </tbody>
+  </table> -->
+
+  <table mat-table [dataSource]="pedidos" matSort class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="idPedido">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id. </th>
+      <td mat-cell *matCellDef="let element"> {{element.idPedido}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="cliente">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome Cliente </th>
+      <td mat-cell *matCellDef="let element"> {{element.cliente.nome}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="dataPedido">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Data Pedido </th>
+      <td mat-cell *matCellDef="let element"> {{element.dataPedido}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="statusPedidos">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status Pedidos </th>
+      <td mat-cell *matCellDef="let element"> {{element.statusPedido.nomeStatusPedido}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
 </div>
