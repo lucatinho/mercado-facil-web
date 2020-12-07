@@ -1,55 +1,47 @@
-<!-- <h3>Relatorio de vendas mensal</h3> -->
-
 <div class="mat-elevation-z8">
 
-  <!-- <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Nº</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Data</th>
-        <th scope="col">Valor</th>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  </mat-form-field>
+  
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+  
+      <!-- Progress Column -->
+      <ng-container matColumnDef="progress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
+        <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+  
+      <!-- Color Column -->
+      <ng-container matColumnDef="color">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Color </th>
+        <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
       </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of pedidosFormatado">
-
-        <th scope="row">{{ item.idPedido }}</th>
-        <td>{{ item.cliente.nome }}</td>
-        <td>{{ item.dataPedido | date:'shortTime'}}</td>
-        <td>@mdo</td>
-      </tr>
-    </tbody>
-  </table> -->
-
-  <table mat-table [dataSource]="pedidos" matSort class="mat-elevation-z8">
-
-    <!-- Position Column -->
-    <ng-container matColumnDef="idPedido">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id. </th>
-      <td mat-cell *matCellDef="let element"> {{element.idPedido}} </td>
-    </ng-container>
+    </table>
   
-    <!-- Name Column -->
-    <ng-container matColumnDef="cliente">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome Cliente </th>
-      <td mat-cell *matCellDef="let element"> {{element.cliente.nome}} </td>
-    </ng-container>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
   
-    <!-- Weight Column -->
-    <ng-container matColumnDef="dataPedido">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Data Pedido </th>
-      <td mat-cell *matCellDef="let element"> {{element.dataPedido}} </td>
-    </ng-container>
-  
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="statusPedidos">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status Pedidos </th>
-      <td mat-cell *matCellDef="let element"> {{element.statusPedido.nomeStatusPedido}} </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-
 </div>
