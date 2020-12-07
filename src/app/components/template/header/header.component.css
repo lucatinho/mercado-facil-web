@@ -49,6 +49,10 @@
     padding-right: 5px;
 }
 
+.header .title-group a {
+    padding: 250px;
+}
+
 .example-spacer {
     flex: 1 1 auto;
 }

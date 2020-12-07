@@ -1,3 +1,4 @@
+import { HeaderService } from './../../template/header/header.service';
 import { Component, OnInit } from '@angular/core';
 import { PedidosService } from '../../pedidos/pedidos.service';
 
@@ -10,7 +11,15 @@ export class RelatorioTotalVendaComponent implements OnInit {
 
   pedidos: any = []
   pedidosFormatado:any=[];
-  constructor(private pedidoService: PedidosService) { }
+  constructor(private pedidoService: PedidosService,
+              private headerService: HeaderService) {
+
+                headerService.headerData = {
+                  title: 'Relatórios - Total de Vendas ',
+                  icon: 'list_alt',
+                  routeUrl: '/relatorio-venda-total'
+                }
+               }
 
   ngOnInit(): void {
     this.bancoPedidos();
