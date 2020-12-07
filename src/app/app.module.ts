@@ -86,6 +86,7 @@ import { InfoFinalizadosComponent } from './components/pedidos/pedido-finalizado
 import {NgxWebstorageModule} from 'ngx-webstorage';
 import { RelatoriosCrudComponent } from './views/relatorios-crud/relatorios-crud.component';
 import { RelatoriosReadComponent } from './components/relatorios/relatorios-read/relatorios-read.component';
+import { RelatorioTotalVendaComponent } from './components/relatorios/relatorio-total-venda/relatorio-total-venda.component';
 
 //import {StorageModule} from '@cedx/ngx-webstorage'
 
@@ -138,7 +139,8 @@ registerLocaleData(localePt);
     InfoProntoComponent,
     InfoFinalizadosComponent,
     RelatoriosCrudComponent,
-    RelatoriosReadComponent
+    RelatoriosReadComponent,
+    RelatorioTotalVendaComponent
   ],
   imports: [
     BrowserModule,

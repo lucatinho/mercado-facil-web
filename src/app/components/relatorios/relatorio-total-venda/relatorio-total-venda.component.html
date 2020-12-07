@@ -1,0 +1,21 @@
+<h3>Relatorio de vendas mensal</h3>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nº</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Data</th>
+        <th scope="col">Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of pedidosFormatado">
+
+        <th scope="row">{{ item.idPedido }}</th>
+        <td>{{ item.cliente.nome }}</td>
+        <td>{{ item.dataPedido | date:'shortTime'}}</td>
+        <td>@mdo</td>
+      </tr>
+    </tbody>
+  </table>

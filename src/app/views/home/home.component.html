@@ -193,7 +193,7 @@
                                         <th>{{ item.idPedido }}</th>
                                         <td>{{ item.cliente.nome }}</td>
                                         <td>{{ item.formaEnvio }}</td>
-                                        <td>{{ item.dataPedido | date:'dd/MM hh:mm'}}</td>
+                                        <td>{{ item.dataPedido | date:'shortTime'}}</td>
                                         <td>{{ item.statusPedido.nomeStatusPedido }}</td>
                                         <!-- <td>
                                       <a (click)="buscarPedidoUnico(item.idPedido)" routerLink="/pedido/update" class="info">
@@ -214,7 +214,7 @@
                                           clear
                                         </i>
                                       </a>
-                                    </td> -->
+                                      </td> -->
 
                                     </tr>
 
@@ -275,7 +275,7 @@
 
 </mat-card>
 
-<!-- <script>
+<script>
     var ctx = document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {
         // The type of chart we want to create
@@ -295,4 +295,4 @@
         // Configuration options go here
         options: {}
     });
-</script> -->
+</script>

@@ -31,7 +31,6 @@ export class PedidoFinalizadosComponent implements OnInit {
 
   ngOnInit(): void {
     this.bancoPedidos();
-    
   }
 
   bancoPedidos(){

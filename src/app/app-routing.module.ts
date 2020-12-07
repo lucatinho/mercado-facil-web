@@ -35,6 +35,7 @@ import { CategoriaCreateComponent } from './components/categorias/categoria-crea
 import { SubcategoriaCreateComponent } from './components/subcategorias/subcategoria-create/subcategoria-create.component';
 import { MercadoAlterarComponent } from './components/mercados/mercado-alterar/mercado-alterar.component';
 import { PedidoFinalizadosComponent } from './components/pedidos/pedido-finalizados/pedido-finalizados.component';
+import { RelatorioTotalVendaComponent } from './components/relatorios/relatorio-total-venda/relatorio-total-venda.component';
 
 
 const routes: Routes = [{
@@ -157,7 +158,10 @@ const routes: Routes = [{
   path:"relatorios",
   component: RelatoriosCrudComponent
 },
-
+{
+  path:"relatorio-venda-total",
+  component: RelatorioTotalVendaComponent
+},
 ];
 
 @NgModule({

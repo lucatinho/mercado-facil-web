@@ -17,7 +17,7 @@
                     <th>{{ item.idPedido }}</th>
                     <td>{{ item.cliente.nome }}</td>
                     <td>{{ item.formaEnvio }}</td>
-                    <td>{{ item.dataPedido | date:'dd/MM hh:mm'}}</td>
+                    <td>{{ item.dataPedido | date:'shortTime'}}</td>
                     <td>{{ item.statusPedido.nomeStatusPedido }}</td>
                     <td>
                         <a (click)="buscarPedidoUnico(item.idPedido)" routerLink="/separacao/info/" class="info">
