@@ -18,9 +18,9 @@
                     </div>
 
                     <div class="form-group" [class.has-error]="!horario.valid && horario.touched">
-                        <label for="nomeMarca">Horario de Atendimento</label>
+                        <label for="nomeMarca">Horário de Atendimento</label>
 
-                        <input placeholder="Horario" type="text" class="form-control" name="horario" id="horario" required #horario="ngModel" [class.is-invalid]="!horario.valid && horario.touched" [(ngModel)]="infoMercado.horario" name="Horario">
+                        <input placeholder="Horario" type="time" class="form-control" name="horario" id="horario" required #horario="ngModel" [class.is-invalid]="!horario.valid && horario.touched" [(ngModel)]="infoMercado.horario" name="Horario">
                         <div class="alert alert-danger" role="alert" *ngIf="!horario.valid && horario.touched">
                             Preencha este Campo
                         </div>
