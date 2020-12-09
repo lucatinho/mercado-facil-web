@@ -1,3 +1,26 @@
+<mat-form-field appearance="fill">
+  <mat-label>Data Inicial</mat-label>
+  <input matInput [matDatepicker]="picker1" (dateInput)="addEventInitial('input', $event)"
+    (dateChange)="addEventInitial('change', $event)">
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Data Final</mat-label>
+  <input matInput [matDatepicker]="picker2" (dateInput)="addEventFinal('input', $event)"
+    (dateChange)="addEventFinal('change', $event)">
+  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+  <mat-datepicker #picker2></mat-datepicker>
+</mat-form-field>
+
+<button (click)="filtrar()" color="primary">
+  Filtrar
+</button>
+<!-- <div class="example-events">
+  <div *ngFor="let e of events">{{e}}</div>
+</div> -->
+
 <div class="mat-elevation-z8">
 
   <table class="table table-striped">

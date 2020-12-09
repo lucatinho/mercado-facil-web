@@ -89,6 +89,8 @@ import { RelatoriosReadComponent } from './components/relatorios/relatorios-read
 import { RelatorioTotalVendaComponent } from './components/relatorios/relatorio-total-venda/relatorio-total-venda.component';
 
 //import {StorageModule} from '@cedx/ngx-webstorage'
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 registerLocaleData(localePt);
 
@@ -169,7 +171,9 @@ registerLocaleData(localePt);
     MatRadioModule,
     ReactiveFormsModule,
     NgbModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [{
     provide: LOCALE_ID,
