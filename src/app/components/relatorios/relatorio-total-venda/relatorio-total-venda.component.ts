@@ -15,8 +15,8 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
   styleUrls: ['./relatorio-total-venda.component.css']
 })
 export class RelatorioTotalVendaComponent implements OnInit {
-  events1: string[] = [];
-  events2: string[] = [];
+  events1: any[] = [];
+  events2: any[] = [];
   pedidosBaseFiltrado:any=[];
 
   pedidos: any = []
@@ -37,12 +37,12 @@ export class RelatorioTotalVendaComponent implements OnInit {
     this.bancoPedidos();
   }
 
-  addEventInitial(type: string, event: MatDatepickerInputEvent<Date>) {
+  addEventInitial(type: any, event: MatDatepickerInputEvent<Date>) {
     this.events1 = [];
     this.events1.push(`${type}: ${event.value}`);
     console.log(this.events1)
   }
-  addEventFinal(type: string, event: MatDatepickerInputEvent<Date>) {
+  addEventFinal(type: any, event: MatDatepickerInputEvent<Date>) {
     this.events2 = [];
     this.events2.push(`${type}: ${event.value}`);
     console.log(this.events2)
